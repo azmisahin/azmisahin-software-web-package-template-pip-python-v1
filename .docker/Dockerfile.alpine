@@ -77,11 +77,13 @@ WORKDIR $PROJECT_FOLDER
 # Install base packages
 RUN apk update && \
     apk add --no-cache \
-    bash
+    bash \
+    python3 \
+    py3-pip
 
 
 # Create the virtual environment if you need
-
+RUN python3 -m venv $DATA_FOLDER/.venv 
 
 # Default port if you need
 EXPOSE $TCP_PORT
@@ -103,8 +105,8 @@ RUN apk update && \
 COPY . .
 
 # install build dependencies
-
-
+RUN . $DATA_FOLDER/.venv/bin/activate && \
+    pip install --no-cache-dir -r src/requirements.txt
 
 # Test stage
 FROM development AS test
@@ -113,12 +115,13 @@ FROM development AS test
 # In the previous stage, we had copied everything.
 
 # install development dependencies
-
-
+RUN . $DATA_FOLDER/.venv/bin/activate && \
+    pip install --no-cache-dir -r tests/requirements.txt
 
 # Run tests
 # If this stage is not successful, do not proceed to other stages.
-
+RUN . $DATA_FOLDER/.venv/bin/activate && \
+    $DATA_FOLDER/.venv/bin/python -m unittest discover -s tests -p '*test.py'
 
 
 # Production stage
