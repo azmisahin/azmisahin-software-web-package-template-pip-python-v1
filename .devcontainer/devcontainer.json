@@ -24,7 +24,7 @@
   // for development
   "workspaceFolder": "/workspaces/template",
   // after the container has been created
-  "postCreateCommand": ".devcontainer/postCreateCommand.sh",
+  // "postCreateCommand": ".devcontainer/postCreateCommand.sh",
   //
   "customizations": {
     "vscode": {
@@ -32,14 +32,25 @@
         "git.authorName": "Azmi SAHIN",
         "git.authorEmail": "azmisahin@outlook.com",
         "git.defaultCloneDirectory": "${workspaceFolder}",
-        "git.autofetch": true
+        "git.autofetch": true,
+        "python.defaultInterpreterPath": "/data/.venv",
+        "python.terminal.activateEnvInCurrentTerminal": true,
+        "python.terminal.launchArgs": [
+          "-X",
+          "development"
+        ]
       },
       "extensions": [
         "hediet.vscode-drawio",
         "ms-azuretools.vscode-docker",
         "eamodio.gitlens",
         "esbenp.prettier-vscode",
-        "mikestead.dotenv"
+        "mikestead.dotenv",
+        "editorconfig.editorconfig",
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "ms-python.black-formatter",
+        "charliermarsh.ruff"
       ]
     }
   }
