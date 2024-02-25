@@ -38,7 +38,7 @@ services:
 
     volumes:
       # cached : Especially during development, mounting files into the Docker container can be faster thanks to this option.
-      - ../..:/workspaces/template
+      - ../..:/workspaces/template:cached
       # our application environment and data
       - data:/data:cached
 
