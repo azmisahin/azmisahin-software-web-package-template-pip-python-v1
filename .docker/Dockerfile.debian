@@ -78,10 +78,13 @@ WORKDIR $PROJECT_FOLDER
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     bash \
+    python3 \
+    python3-pip \
+    python3-venv \
     && rm -rf /var/lib/apt/lists/*
 
 # Create the virtual environment
-
+RUN python3 -m venv $DATA_FOLDER/.venv
 
 # Default port if you need
 EXPOSE $TCP_PORT
@@ -103,8 +106,8 @@ RUN apt-get update && \
 COPY . .
 
 # install build dependencies
-
-
+RUN . $DATA_FOLDER/.venv/bin/activate && \
+    pip install --no-cache-dir -r src/requirements.txt
 
 # Test stage
 FROM development AS test
@@ -113,12 +116,13 @@ FROM development AS test
 # In the previous stage, we had copied everything.
 
 # install development dependencies
-
-
+RUN . $DATA_FOLDER/.venv/bin/activate && \
+    pip install --no-cache-dir -r tests/requirements.txt
 
 # Run tests
 # If this stage is not successful, do not proceed to other stages.
-
+RUN . $DATA_FOLDER/.venv/bin/activate && \
+    $DATA_FOLDER/.venv/bin/python -m unittest discover -s tests -p '*test.py'
 
 
 # Production stage
