@@ -49,6 +49,16 @@ else
   echo "✅ Automatically formatting Python code succeeded."
 fi
 
+sphinx-apidoc -o /workspaces/template/dist/docs  /workspaces/template/src
+if [ $? -ne 0 ]; then
+  echo "✖️ Documentation generation code failed."
+  exit 1
+else
+  echo "✅ Automatically the Documentation code was successful."
+fi
+
+
+
 echo ==========
 
 sleep infinity
