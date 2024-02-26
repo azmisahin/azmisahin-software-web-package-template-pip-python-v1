@@ -27,7 +27,7 @@ echo ==========
 
 . $DATA_FOLDER/.venv/bin/activate
 if [ $? -ne 0 ]; then
-  echo "Failed to activate virtual environment."
+  echo "✖️ Failed to activate virtual environment."
   exit 1
 else
   echo "✅ Virtual environment activated."
@@ -35,10 +35,18 @@ fi
 
 flake8
 if [ $? -ne 0 ]; then
-  echo "Linting errors found. Please fix them before committing."
+  echo "✖️ Linting errors found. Please fix them before committing."
   exit 1
 else
   echo "✅ Linting passed."
+fi
+
+black .
+if [ $? -ne 0 ]; then
+  echo "✖️ Automatically formatting Python code failed."
+  exit 1
+else
+  echo "✅ Automatically formatting Python code succeeded."
 fi
 
 echo ==========

@@ -2,4 +2,4 @@
 
 from .tracking import Tracking
 
-__all__ = ['Tracking']  # List of exposed modules
+__all__ = ["Tracking"]  # List of exposed modules
