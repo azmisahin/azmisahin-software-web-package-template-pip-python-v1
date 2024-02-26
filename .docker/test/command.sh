@@ -22,6 +22,7 @@ echo SWICH_TRACKING_WARN=$SWICH_TRACKING_WARN
 echo SWICH_TRACKING_ERROR=$SWICH_TRACKING_ERROR
 echo SWICH_TRACKING_VERBOSE=$SWICH_TRACKING_VERBOSE
 echo SWICH_TRACKING_REPORT=$SWICH_TRACKING_REPORT
+echo PYTHONPATH=$PYTHONPATH
 
 echo ==========
 
@@ -65,7 +66,13 @@ else
   echo "✅ Behavior-driven development was successful."
 fi
 
-
+/data/.venv/bin/python -X development /workspaces/template/example/package/tracker.py
+if [ $? -ne 0 ]; then
+  echo "✖️ Example package tracker failed."
+  exit 1
+else
+  echo "✅ Example package tracker was successful."
+fi
 
 echo ==========
 

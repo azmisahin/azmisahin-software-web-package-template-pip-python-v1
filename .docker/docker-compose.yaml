@@ -13,6 +13,8 @@ services:
 
   application:
 
+    env_file: .env
+  
     build:
       context: ..
       dockerfile: .docker/Dockerfile.$DISTRIB_ID
