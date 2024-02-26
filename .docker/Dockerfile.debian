@@ -92,7 +92,7 @@ EXPOSE $TCP_PORT
 # Development stage
 FROM build AS development
 
-# Install base packages
+# Install development packages
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     build-essential \
@@ -105,7 +105,7 @@ RUN apt-get update && \
 # Copy only necessary files for development
 COPY . .
 
-# install build dependencies
+# install development dependencies
 RUN . $DATA_FOLDER/.venv/bin/activate && \
     pip install --no-cache-dir -r src/requirements.txt
 
@@ -115,7 +115,7 @@ FROM development AS test
 # Copy only necessary files for development
 # In the previous stage, we had copied everything.
 
-# install development dependencies
+# install tests dependencies
 RUN . $DATA_FOLDER/.venv/bin/activate && \
     pip install --no-cache-dir -r tests/requirements.txt
 
@@ -127,6 +127,10 @@ RUN . $DATA_FOLDER/.venv/bin/activate && \
 
 # Production stage
 FROM test AS production
+
+# install production dependencies
+RUN . $DATA_FOLDER/.venv/bin/activate && \
+    pip install --no-cache-dir -r requirements.txt
 
 # Application run
 # It allows the application to start automatically.

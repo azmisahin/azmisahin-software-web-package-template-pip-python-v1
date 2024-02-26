@@ -23,6 +23,26 @@ echo SWICH_TRACKING_ERROR=$SWICH_TRACKING_ERROR
 echo SWICH_TRACKING_VERBOSE=$SWICH_TRACKING_VERBOSE
 echo SWICH_TRACKING_REPORT=$SWICH_TRACKING_REPORT
 
+echo ==========
+
+. $DATA_FOLDER/.venv/bin/activate
+if [ $? -ne 0 ]; then
+  echo "Failed to activate virtual environment."
+  exit 1
+else
+  echo "✅ Virtual environment activated."
+fi
+
+flake8
+if [ $? -ne 0 ]; then
+  echo "Linting errors found. Please fix them before committing."
+  exit 1
+else
+  echo "✅ Linting passed."
+fi
+
+echo ==========
+
 sleep infinity
 
 /bin/sh

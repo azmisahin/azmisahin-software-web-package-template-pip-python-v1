@@ -38,9 +38,9 @@ services:
 
     volumes:
       # cached : Especially during development, mounting files into the Docker container can be faster thanks to this option.
-      - ../..:/workspaces/template:cached
+      - ../..:/workspaces/template
       # our application environment and data
-      - data:/data:cached
+      - data:/data
 
     # must be launched in production environments
     command: sleep infinity
