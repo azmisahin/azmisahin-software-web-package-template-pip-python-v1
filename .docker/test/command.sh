@@ -57,6 +57,14 @@ else
   echo "✅ Automatically the Documentation code was successful."
 fi
 
+behave
+if [ $? -ne 0 ]; then
+  echo "✖️ Behavior-driven development failed."
+  exit 1
+else
+  echo "✅ Behavior-driven development was successful."
+fi
+
 
 
 echo ==========
