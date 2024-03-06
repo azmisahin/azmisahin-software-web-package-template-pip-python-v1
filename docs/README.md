@@ -37,3 +37,51 @@
 +-- .editor.config                  '	Developers will use these code indents and styles in their IDEs.
 
 ```
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/azmisahin/azmisahin-software-web-package-template-pip-python-v1.git
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd azmisahin-software-web-package-template-pip-python-v1
+   ```
+
+3. Create a virtual environment (optional but recommended):
+
+   ```bash
+   python -m venv venv
+   ```
+
+4. Activate the virtual environment:
+
+   - Windows:
+
+     ```bash
+     .\venv\Scripts\activate
+     ```
+
+   - Unix or MacOS:
+
+     ```bash
+     source venv/bin/activate
+     ```
+
+5. Install project dependencies:
+
+   ```bash
+   pip install -e .
+   ```
+
+## Usage
+
+Run the web service using the provided console script:
+
+```bash
+tracker run
+```
