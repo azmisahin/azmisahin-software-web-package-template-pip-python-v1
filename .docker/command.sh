@@ -24,6 +24,18 @@ echo SWICH_TRACKING_VERBOSE=$SWICH_TRACKING_VERBOSE
 echo SWICH_TRACKING_REPORT=$SWICH_TRACKING_REPORT
 echo PYTHONPATH=$PYTHONPATH
 
+echo ==========
+
+. $DATA_FOLDER/.venv/bin/activate
+if [ $? -ne 0 ]; then
+  echo "✖️ Failed to activate virtual environment."
+  exit 1
+else
+  echo "✅ Virtual environment activated."
+fi
+
 sleep infinity
+
+echo ==========
 
 /bin/sh
