@@ -24,7 +24,18 @@ setup(
             "tracker = package.app:main",
         ],
     },
-    install_requires=[
-        #
-    ],
+    extras_require={
+        "development": [
+            "gunicorn"
+            # Add development tools here
+        ],
+        "test": [
+            "gunicorn"
+            # Add test tools here
+        ],
+        "production": [
+            # Add production tools here
+        ],
+    },
 )
+

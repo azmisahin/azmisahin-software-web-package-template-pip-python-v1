@@ -1,3 +1,4 @@
+# features/package.feature
 Feature: Trace Manager
 
   Scenario Outline: Should run in debug mode
